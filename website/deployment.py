@@ -3,10 +3,10 @@ from .settings import *
 from . settings import BASE_DIR
 
 
-SECRET_KEY = os.environ['SECRET_KEY','dBmRu7qaYjbSANVwoE0!p&n31']
+SECRET_KEY = os.environ['SECRET_KEY','j8AWXOhpE2']
 
-ALLOWED_HOSTS = [os.environ['azurewebapp-fvdbgagvgyghd6eu.centralindia-01.azurewebsites.net','localhost']]
-CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['azurewebapp-fvdbgagvgyghd6eu.centralindia-01.azurewebsites.net','localhost']]
+ALLOWED_HOSTS = [os.environ['azuredeploy1-dbgvbqgtb6b9bdh2.centralindia-01.azurewebsites.net','localhost']]
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['azuredeploy1-dbgvbqgtb6b9bdh2.centralindia-01.azurewebsites.net','localhost']]
 DEBUG = False
 
 MIDDLEWARE = [
