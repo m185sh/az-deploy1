@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery library -->
+</head>
+<body>
+    <section id="order" class="order">
+        <div class="container">
+            <h2>Place Your Order</h2>
+            <p>Fill out the form below to place an order for your favorite coffee!</p>
+            <form id="orderForm">
+                {% csrf_token %}
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                <label for="coffee">Choose Your Coffee</label>
+                <select id="coffee" name="coffee" required>
+                    <option value="">Select Coffee</option>
+                    <option value="espresso">Espresso</option>
+                    <option value="latte">Latte</option>
+                    <option value="cappuccino">Cappuccino</option>
+                    <option value="mocha">Mocha</option>
+                </select>
+
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Quantity" required min="1">
+
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" placeholder="Delivery Address" required></textarea>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- JavaScript to handle form submission with AJAX -->
+    <script>
+        $(document).ready(function() {
+            $('#orderForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                $.ajax({
+                    url: "{% url 'place_order' %}", // Django URL for handling the order
+                    type: 'POST',
+                    data: $(this).serialize(), // Serialize form data for AJAX request
+                    success: function(response) {
+                        // Show the success message on successful order placement
+                        alert('Your order was successful! We will reach you shortly.');
+                    },
+                    error: function(xhr, status, error) {
+                        // Show an error message in case of a failure
+                        alert('There was an error placing your order. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

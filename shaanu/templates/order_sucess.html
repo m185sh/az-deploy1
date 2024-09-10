@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <!-- Include any CSS files or styles here -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You for Your Order!</h1>
+        <p>Your order has been successfully placed. We are processing it now and will notify you once it's ready for delivery.</p>
+        
+        <!-- Display order details if available -->
+        {% if order %}
+        <div class="order-details">
+            <h2>Order Details:</h2>
+            <p><strong>Order ID:</strong> {{ order.id }}</p>
+            <p><strong>Order Date:</strong> {{ order.date }}</p>
+            <p><strong>Total Amount:</strong> ${{ order.total_amount }}</p>
+        </div>
+        {% endif %}
+        
+        <!-- Back to Home or Shop button -->
+        <a href="{% url 'home' %}" class="btn">Continue Shopping</a>
+    </div>
+</body>
+</html>
